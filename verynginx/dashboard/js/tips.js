@@ -11,7 +11,7 @@ tips.show_tips = function(group){
     } 
 
     tips.tips_vm = new Vue({
-        el: '#verynginx_tips',
+        el: '#vn_tips',
         data: {tips:tips.data[group]},
     });
 
@@ -78,7 +78,7 @@ tips.data = {
         {"tips":"功能介绍","content":"可以在这里看到全部的配置情况"},
         {"tips":"操作说明","content":["点击保存配置将保存全部配置到服务器，并即刻生效",
 		                              "点击读取配置将从服务器获取当前使用的配置",
-									  "配置保存在VeryNginx目录下的config.json文件。备份/删除 该文件可以 备份/恢复默认 设置"]}
+									  "配置保存在vn目录下的config.json文件。备份/删除 该文件可以 备份/恢复默认 设置"]}
     ],
 
 

@@ -2,7 +2,7 @@
 -- @Date    : 2016-04-20 
 -- @Author  : Alexa (AlexaZhou@163.com)
 -- @Link    : 
--- @Disc    : static backend for verynginx
+-- @Disc    : static backend for vn
 
 local _M = {}
 

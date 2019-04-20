@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>VeryNginx</title>
+<title>Waf</title>
 <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/webInterface.css">
 <link rel="stylesheet" href="css/bs_callout.css">
@@ -42,7 +42,7 @@
     <div id="interface_login" class="interface">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title" >VeryNginx 登录</h3>
+                <h3 class="panel-title" >Waf 登录</h3>
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" id='login_form' onsubmit="return false;">
@@ -63,7 +63,6 @@
                             <button class="btn btn-default" onclick="dashboard.login()">登录</button>
                         </div>
                     </div>
-					<div>默认两个都是verynginx</div>
                 </form>
             </div>
         </div>
@@ -75,7 +74,7 @@
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" onclick="dashboard.switch_to_page('status')" href="#">VeryNginx</a> 
+                    <a class="navbar-brand" onclick="dashboard.switch_to_page('status')" href="#">Waf</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
@@ -90,9 +89,6 @@
                         </li>
                         <li class="topnav"id="topnav_firewall" style="display:none">
                             <a href="#" onclick="dashboard.switch_to_page('firewall')" >防火墙</a>
-                        </li>
-                        <li class="topnav" id="topnav_about" >
-                            <a href="#" onclick="dashboard.switch_to_page('about')" >关于</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -264,7 +260,7 @@
                             </div>
                         </div>
                     </div>  
-                    <div class="col-sm-8" id="verynginx_config">
+                    <div class="col-sm-8" id="vn_config">
                         <div class="config_container" id="config_basic_matcher">
                             <div class="config_title">
                                 匹配规则
@@ -328,7 +324,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="form-group" id="verynginx_matcher_editor" >
+                                <div class="form-group" id="vn_matcher_editor" >
                                     <label class="col-sm-2 control-label">匹配规则</label>
                                     <div class="col-sm-10">
                                         <div style="border-style:solid;border-width:1px;border-color:#CCC;border-radius:5px;margin-bottom:5px;min-height:32px">
@@ -1812,7 +1808,7 @@
                             <div class="vn-config-box row">
                                 <div class="col-sm-2 vn-config-label">本页访问路径</div>
                                 <div class="col-sm-10">
-                                    <input class="form-control vn-config-input" type="text" v-model="config_now.base_uri" placeholder="/verynginx" vn_data_verify="verify.base_uri()" onchange="vnform.verify_input_with_notice(this)">
+                                    <input class="form-control vn-config-input" type="text" v-model="config_now.base_uri" placeholder="/vn" vn_data_verify="verify.base_uri()" onchange="vnform.verify_input_with_notice(this)">
                                 </div>
                             </div>
                             
@@ -1826,7 +1822,7 @@
                             <div class="vn-config-box row">
                                 <div class="col-sm-2 vn-config-label">本页Cookie前缀设置</div>
                                 <div class="col-sm-10">
-                                    <input class="form-control vn-config-input" type="text" v-model="config_now.cookie_prefix" placeholder="The prefix of cookies of verynginx" vn_data_verify="verify.str_len(1,20)" onchange="vnform.verify_input_with_notice(this)">
+                                    <input class="form-control vn-config-input" type="text" v-model="config_now.cookie_prefix" placeholder="The prefix of cookies of vn" vn_data_verify="verify.str_len(1,20)" onchange="vnform.verify_input_with_notice(this)">
                                 </div>
                             </div>
 
@@ -1959,7 +1955,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-2" id="verynginx_tips">
+                    <div class="col-sm-2" id="vn_tips">
                         <template v-for="tip in tips">
                             <div class="tips_container"  onclick="tips.toggle(this)">
                                 <div class="tips_tips">
@@ -2207,10 +2203,10 @@
         
         <div class="page" id="page_about" style="display:none">
             <div style="padding-top:100px">
-                <h1 class="text-center" id="about_title">VeryNginx</h1>
+                <h1 class="text-center" id="about_title">Waf</h1>
                 <h3 class="text-center" id="about_sub_title">A very powerful and friendly nginx</h3>
                 <div id="about_sub_btn_container">
-                    <a id="about_sub_btn" target="_blank" href="https://github.com/alexazhou/VeryNginx">
+                    <a id="about_sub_btn" target="_blank" href="https://github.com/alexazhou/Waf">
                         Look in Github
                     </a>
                 </div>

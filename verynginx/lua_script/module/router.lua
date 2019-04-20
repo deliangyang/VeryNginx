@@ -2,7 +2,7 @@
 -- -- @Date    : 2016-01-02 00:35
 -- -- @Author  : Alexa (AlexaZhou@163.com)
 -- -- @Link    : 
--- -- @Disc    : url router of verynginx's control panel 
+-- -- @Disc    : url router of vn's control panel
 
 local summary = require "summary"
 local status = require "status"

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f1408256-1f56-45d7-9cb7-d2afbeb524d3" name="t" url="http://www.sourcedev.cc">
+        <fileTransfer host="www.sourcedev.cc" port="22" privateKey="$USER_HOME$/.ssh/id_rsa" rootFolder="/opt/verynginx" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

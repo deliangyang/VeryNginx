@@ -2,7 +2,7 @@ var config = new Object();
 
 Vue.config.debug = true;
 config.config_vm = null; 
-config.verynginx_config = {};
+config.vn_config = {};
 
 config.original_config_json = null;
 
@@ -78,7 +78,7 @@ config.reset_input_form = function(){
 config.get_config = function(){
     $.get("./config",function(data,status){
         config.original_config_json = JSON.stringify( data , null, 2);
-        config.verynginx_config = data; 
+        config.vn_config = data;
 
         if( config.config_vm != null ){
             config.config_vm.$set( 'config_now', data);
@@ -87,9 +87,9 @@ config.get_config = function(){
         }
 
         config.config_vm = new Vue({
-            el: '#verynginx_config',
+            el: '#vn_config',
             data: {
-                'config_now':config.verynginx_config,
+                'config_now':config.vn_config,
                 'editor':{}
             },
             computed : {
@@ -113,7 +113,7 @@ config.save_config = function(){
 
     //step 1, use encodeURIComponent to escape special char 
     var config_json_escaped = window.encodeURIComponent( config_json );
-    //step 2, use base64 to encode data to avoid be blocked by verynginx args filter
+    //step 2, use base64 to encode data to avoid be blocked by vn args filter
     var config_json_escaped_base64 = window.btoa( config_json_escaped );
 
     $.post("./config",{ config:config_json_escaped_base64 },function(data){
@@ -141,17 +141,17 @@ config.config_mod = function(rule_group_name,index,value){
     console.log('-->',rule_group_name,index,value);
     if( value == null ){
         if( typeof index == 'string' ){
-            Vue.delete( config.verynginx_config[rule_group_name], index );
+            Vue.delete( config.vn_config[rule_group_name], index );
         }else{
-            config.verynginx_config[rule_group_name].splice( index, 1 );
+            config.vn_config[rule_group_name].splice( index, 1 );
         }
     }else{
         if( index == undefined || index == null ){
-            config.verynginx_config[rule_group_name].push(value);
+            config.vn_config[rule_group_name].push(value);
         }else if( typeof index == 'string' ){
-            Vue.set( config.verynginx_config[rule_group_name], index ,value );
+            Vue.set( config.vn_config[rule_group_name], index ,value );
         }else{
-            config.verynginx_config[rule_group_name].$set( index, value );
+            config.vn_config[rule_group_name].$set( index, value );
         }
     }
 }
@@ -164,25 +164,25 @@ config.config_move_up = function(rule_group_name,index){
         return;
     }
 
-    var tmp = config.verynginx_config[rule_group_name][index-1];
-    config.verynginx_config[rule_group_name].$set(index-1, config.verynginx_config[rule_group_name][index]);
-    config.verynginx_config[rule_group_name].$set(index, tmp);
+    var tmp = config.vn_config[rule_group_name][index-1];
+    config.vn_config[rule_group_name].$set(index-1, config.vn_config[rule_group_name][index]);
+    config.vn_config[rule_group_name].$set(index, tmp);
 }
 
 config.config_move_down = function(rule_group_name,index){
-    if(index >= config.verynginx_config[rule_group_name].length - 1){
+    if(index >= config.vn_config[rule_group_name].length - 1){
         dashboard.notify("The item already at the bottom");
         return;
     }
     
-    var tmp = config.verynginx_config[rule_group_name][index+1];
-    config.verynginx_config[rule_group_name].$set(index+1, config.verynginx_config[rule_group_name][index]);
-    config.verynginx_config[rule_group_name].$set(index, tmp);
+    var tmp = config.vn_config[rule_group_name][index+1];
+    config.vn_config[rule_group_name].$set(index+1, config.vn_config[rule_group_name][index]);
+    config.vn_config[rule_group_name].$set(index, tmp);
 }
 
 
 config.edit_flag_set = function( group, flag ){
-    var config_group = config.verynginx_config[ group ];
+    var config_group = config.vn_config[ group ];
     config_group = JSON.parse( JSON.stringify(config_group) );
 
     if( flag != null ){
@@ -195,7 +195,7 @@ config.edit_flag_set = function( group, flag ){
 //set a rule to edit status and fill data of the rule into editor form
 //default: include_key == undefined
 config.config_edit_begin = function( rule_group_name, index, form_id, index_key_name ){
-    var config_group = config.verynginx_config[ rule_group_name ];
+    var config_group = config.vn_config[ rule_group_name ];
     var data = util.clone( config_group[index] );
     if( index_key_name != undefined ){
         data[index_key_name] = index;
@@ -205,7 +205,7 @@ config.config_edit_begin = function( rule_group_name, index, form_id, index_key_
 }
 
 config.config_edit_save = function( rule_group_name, form_id , index_key_name ){
-    var editing = config.verynginx_config[rule_group_name]._editing;
+    var editing = config.vn_config[rule_group_name]._editing;
     var err_msg = vnform.verify_form( form_id ); 
     if( err_msg != null ){
         dashboard.show_notice('warning', err_msg );
@@ -214,7 +214,7 @@ config.config_edit_save = function( rule_group_name, form_id , index_key_name ){
     
     var value = vnform.get_data( form_id );
     if( editing != undefined ){
-        config.verynginx_config[rule_group_name]._editing = null;
+        config.vn_config[rule_group_name]._editing = null;
     }
 
     if( index_key_name != undefined){
@@ -238,7 +238,7 @@ config.config_edit_cacel = function( rule_group_name, form_id ){
 
 //for matcher only
 config.config_matcher_delete_condition = function( matcher_name, condition_name ){
-    Vue.delete( config.verynginx_config['matcher'][matcher_name], condition_name  );
+    Vue.delete( config.vn_config['matcher'][matcher_name], condition_name  );
 }
 
 //add the content of matcher editor to global config
@@ -255,12 +255,12 @@ config.config_matcher_add = function(){
         return;
     }
 
-    if( config.verynginx_config['matcher'][matcher_name] != null ){
+    if( config.vn_config['matcher'][matcher_name] != null ){
         dashboard.notify('Matcher [' + matcher_name + '] already existed');
         return;
     }
 
-    Vue.set( config.verynginx_config['matcher'], matcher_name ,matcher_editor.tmp_conditions );
+    Vue.set( config.vn_config['matcher'], matcher_name ,matcher_editor.tmp_conditions );
     matcher_editor.clear();
 }
 

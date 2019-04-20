@@ -15,11 +15,11 @@ _M["configs"] = {}
 
 _M.configs["config_version"] = "0.36"
 _M.configs["readonly"] = false
-_M.configs["base_uri"] = "/verynginx"
+_M.configs["base_uri"] = "/vn"
 _M.configs['dashboard_host'] = ""
-_M.configs['cookie_prefix'] = "verynginx"
+_M.configs['cookie_prefix'] = "vn"
 _M.configs["admin"] = {
-    { ["user"] = "verynginx", ["password"] = "verynginx", ["enable"] = true}
+    { ["user"] = "himan", ["password"] = "what's up", ["enable"] = true}
 }
 
 _M.configs['matcher'] = {
@@ -49,10 +49,10 @@ _M.configs['matcher'] = {
             ['value']="\\.(git|svn|\\.)",
         },
     },
-    ["verynginx"] = {
+    ["vn"] = {
         ["URI"] = {
             ['operator'] = "≈",
-            ['value']="^/verynginx/",
+            ['value']="^/vn/",
         }
     },
     ["localhost"] = {
@@ -61,16 +61,16 @@ _M.configs['matcher'] = {
             ["value"] = "127.0.0.1"
         }
     },
-    ["demo_verynginx_short_uri"] = {
+    ["demo_vn_short_uri"] = {
         ["URI"] = {
             ['operator'] = "≈",
             ['value']="^/vn",
         }
     },
-    ["demo_other_verynginx_uri"] = {
+    ["demo_other_vn_uri"] = {
         ["URI"] = {
             ['operator'] = "=",
-            ['value']="/redirect_to_verynginx",
+            ['value']="/redirect_to_vn",
         }
     }
 }
@@ -94,19 +94,19 @@ _M.configs["summary_collect_rule"] = {
 
 _M.configs["scheme_lock_enable"] = false
 _M.configs["scheme_lock_rule"] = {
-    {["matcher"] = 'verynginx', ["scheme"] = "https", ["enable"] = false},
+    {["matcher"] = 'vn', ["scheme"] = "https", ["enable"] = false},
 }
 
 _M.configs["redirect_enable"] = true
 _M.configs["redirect_rule"] = {
     --redirect to a static uri
-    {["matcher"] = 'demo_other_verynginx_uri', ["to_uri"] = "/verynginx/index.html", ["enable"] = true}, 
+    {["matcher"] = 'demo_other_vn_uri', ["to_uri"] = "/vn/index.html", ["enable"] = true},
 }
 
 _M.configs["uri_rewrite_enable"] = true
 _M.configs["uri_rewrite_rule"] = {
     --redirect to a Regex generate uri 
-    {["matcher"] = 'demo_verynginx_short_uri', ["replace_re"] = "^/vn/(.*)", ["to_uri"] = "/verynginx/$1", ["enable"] = true}, 
+    {["matcher"] = 'demo_vn_short_uri', ["replace_re"] = "^/vn/(.*)", ["to_uri"] = "/vn/$1", ["enable"] = true},
 }
 
 _M.configs["browser_verify_enable"] = true
@@ -167,14 +167,14 @@ function _M.version_updater_022( configs )
 end
 
 function _M.version_updater_03( configs )
-    configs['base_uri'] = "/verynginx"
+    configs['base_uri'] = "/vn"
     configs["config_version"] = "0.31"
     return configs
 end
 
 function _M.version_updater_031( configs )
     configs['dashboard_host'] = ""
-    configs['cookie_prefix'] = "verynginx"
+    configs['cookie_prefix'] = "vn"
     configs["config_version"] = "0.32"
     return configs
 end
@@ -248,7 +248,7 @@ local json = require "json"
 
 function _M.home_path()
     local current_script_path = debug.getinfo(1, "S").source:sub(2)
-    local home_path = current_script_path:sub( 1, 0 - string.len("/lua_script/VeryNginxConfig.lua") -1 ) 
+    local home_path = current_script_path:sub( 1, 0 - string.len("/lua_script/VeryNginxConfig.lua") -1 )
     return home_path
 end
 

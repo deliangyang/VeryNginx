@@ -124,7 +124,7 @@ data_stat.get_data = function () {
     $.ajax({
         type: "GET",
         url: data_url,
-        // url: "/verynginx/summary?type=long",
+        // url: "/vn/summary?type=long",
         data_Type: "json",
 
         success: function (json_data) {

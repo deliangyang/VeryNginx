@@ -316,7 +316,7 @@ matcher_editor.form_meta = {
 matcher_editor.init = function(){
     
     matcher_editor.tmp_conditions_vm = new Vue({
-        el: '#verynginx_matcher_editor',
+        el: '#vn_matcher_editor',
         data: {
             conditions:matcher_editor.tmp_conditions
         },

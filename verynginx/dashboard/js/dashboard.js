@@ -94,8 +94,8 @@ dashboard.login = function(){
 
 dashboard.logout = function(){
     monitor.stop();
-    $.cookie( 'verynginx_user', null,{ path: '/verynginx'} );
-    $.cookie( 'verynginx_session', null, { path: '/verynginx'} );  
+    $.cookie( 'vn_user', null,{ path: '/vn'} );
+    $.cookie( 'vn_session', null, { path: '/vn'} );
     location.reload(); 
 }
 
